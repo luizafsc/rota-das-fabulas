@@ -1,12 +1,37 @@
 extends layout
 
 block content
+  style.
+
+      @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Poppins:wght@300;400&display=swap');
+        h1 {
+          font-family: 'Gochi Hand', cursive;
+          color: #075d37;
+          text-align: center;
+          padding-top: 2rem;
+        }
+      body {
+        background-color: #f2f2f2; /* Cor de fundo */
+        color: #333; /* Cor do texto */
+        font-family: 'Arial', sans-serif; /* Fonte do texto */
+      }
+      ul.generos {
+        background-color: #ffff; /* Cor de fundo */
+        border-radius:20px;
+        box-shadow: 3px 3px 4px grey;
+        width:20%;
+        align-self: center;
+        margin: 0 auto;
+      }
+      li.genres {
+        text-align: center;
+      }
   h1= title
 
-  ul
-  each val in list_genres
-    li
-      a(href=val.url) #{val.name}
+  ul(class='generos')
+    each val in list_genres
+      li(class='genres')
+        a(href=val.url) #{val.name}
 
-  else
-    li There are no genre.
+    else
+      li There are no genre.

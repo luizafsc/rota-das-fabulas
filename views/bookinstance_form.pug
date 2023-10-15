@@ -1,6 +1,50 @@
 extends layout
 
 block content
+  style.
+
+      @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Poppins:wght@300;400&display=swap');
+        h1 {
+          font-family: 'Gochi Hand', cursive;
+          color: #075d37;
+          text-align: center;
+          padding-top: 2rem;
+        }
+        label {
+          font-family: 'Poppins', serif;
+          color: #075d37; 
+        }
+        button.btn btn-primary {
+          text-decoration: none;
+          background-color: #A5C1A6;
+          color: white;
+          padding-left: 20px;
+          padding-right:20px;
+          border-radius:50px;
+          border: none;
+        }
+        .btn-primary  {
+          background-color: #A5C1A6;
+          color: grey;
+          padding-left: 20px;
+          padding-right:20px;
+          border-radius:50px;
+          border: 0px;
+          font-family: 'Poppins', serif;
+        }
+        .btn-primary:hover {
+          background-color: #075d37;
+          color: white;
+          padding-left: 20px;
+          padding-right:20px;
+          border-radius:50px;
+          font-family: 'Poppins', serif;
+        }
+        .form-control {
+          border-radius: 10px;
+          font-family: 'Poppins', serif;
+        }
+
   h1=title
 
   form(method='POST' action='')
