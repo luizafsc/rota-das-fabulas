@@ -4,11 +4,17 @@ block content
   style.
 
       @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Poppins:wght@300;400&display=swap');
+
+        body {
+          background-color: #f2f2f2;
+        }
         h1 {
           font-family: 'Gochi Hand', cursive;
           color: #075d37;
           text-align: center;
           padding-top: 2rem;
+          text-decoration:underline;
+
         }
         ul.copias {
           background-color: #ffff; /* Cor de fundo */
@@ -18,6 +24,36 @@ block content
           align-self: center;
           margin: 0 auto;
         }
+        li {
+          padding:5px;
+        }
+        span.um {
+          background-color: #7BD37F;
+          padding:2px;
+          border-radius:20px;
+          padding-right:8px;
+          padding-left:8px;
+          font-weight:bold;
+          color: #244C26;
+        }
+        span.dois {
+          background-color: #D5D673;
+          padding:2px;
+          border-radius:20px;
+          padding-right:8px;
+          padding-left:8px;
+          font-weight:bold;
+          color: #565508;
+        }
+        span.tres {
+          background-color: #D18489;
+          padding:2px;
+          border-radius:20px;
+          padding-right:8px;
+          padding-left:8px;
+          font-weight:bold;
+          color: #921922;
+        }
 
   h1= title
 
@@ -26,11 +62,11 @@ block content
       li
         a(href=val.url) #{val.book.title} : #{val.imprint} -
         if val.status=='Available'
-         span.text-success #{val.status}
+         span(class='um') #{val.status}
         else if val.status=='Maintenance'
-          span.text-danger #{val.status}
+          span(class='dois') #{val.status}
         else
-          span.text-warning #{val.status}
+          span(class='tres') #{val.status}
         if val.status!='Available'
           span  (Due: #{val.due_back_formatted} )
 
