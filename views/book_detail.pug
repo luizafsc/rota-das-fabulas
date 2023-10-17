@@ -42,13 +42,13 @@ block content
       margin: 0 auto;
     }
 
-  h1 Title: #{book.title}
+  h1 Titulo: #{book.title}
 
-  p #[strong Author:]
+  p #[strong Autor:]
     a(href=book.author.url) #{book.author.name}
-  p #[strong Summary:] #{book.summary}
+  p #[strong Sinopse:] #{book.summary}
   p #[strong ISBN:] #{book.isbn}
-  p #[strong Genre:]
+  p #[strong Gênero:]
     each val, index in book.genre
       a(href=val.url) #{val.name}
       if index < book.genre.length - 1
@@ -67,12 +67,12 @@ block content
         p.text-warning #{val.status}
       p #[strong Imprint:] #{val.imprint}
       if val.status!='Available'
-        p #[strong Due back:] #{val.due_back}
+        p #[strong Data de devolução:] #{val.due_back}
       p #[strong Id:]
         a(href=val.url) #{val._id}
 
     else
-      p There are no copies of this book in the library.
+      p Não á copias na biblioteca.
 
   hr
   p

@@ -22,13 +22,13 @@ exports.bookinstance_detail = asyncHandler(async (req, res, next) => {
 
   if (bookInstance === null) {
     // No results.
-    const err = new Error("Book copy not found");
+    const err = new Error("Cópia do livro não encontrada");
     err.status = 404;
     return next(err);
   }
 
   res.render("bookinstance_detail", {
-    title: "Book:",
+    title: "Detalhes da cópia:",
     bookinstance: bookInstance,
   });
 });
@@ -38,7 +38,7 @@ exports.bookinstance_create_get = asyncHandler(async (req, res, next) => {
   const allBooks = await Book.find({}, "title").exec();
 
   res.render("bookinstance_form", {
-    title: "Create BookInstance",
+    title: "Criar Cópia de Livro",
     book_list: allBooks,
   });
 });
@@ -46,14 +46,14 @@ exports.bookinstance_create_get = asyncHandler(async (req, res, next) => {
 // Handle BookInstance create on POST.
 exports.bookinstance_create_post = [
   // Validate and sanitize fields.
-  body("book", "Book must be specified").trim().isLength({ min: 1 }).escape(),
-  body("imprint", "Imprint must be specified")
+  body("book", "O livro deve ser especificado").trim().isLength({ min: 1 }).escape(),
+  body("imprint", "A editora deve ser especificada")
     .trim()
     .isLength({ min: 1 })
     .escape(),
   body("status").escape(),
-  body("due_back", "Invalid date")
-    .optional({ values: "falsy" })
+  body("due_back", "Data inválida")
+    .optional({ checkFalsy: true })
     .isISO8601()
     .toDate(),
 
@@ -76,9 +76,9 @@ exports.bookinstance_create_post = [
       const allBooks = await Book.find({}, "title").exec();
 
       res.render("bookinstance_form", {
-        title: "Create BookInstance",
+        title: "Criar Cópia de Livro",
         book_list: allBooks,
-        selected_book: bookInstance.book._id,
+        selected_book: bookInstance.book,
         errors: errors.array(),
         bookinstance: bookInstance,
       });
@@ -103,7 +103,7 @@ exports.bookinstance_delete_get = asyncHandler(async (req, res, next) => {
   }
 
   res.render("bookinstance_delete", {
-    title: "Delete BookInstance",
+    title: "Excluir Cópia de Livro",
     bookinstance: bookInstance,
   });
 });
@@ -120,20 +120,20 @@ exports.bookinstance_update_get = asyncHandler(async (req, res, next) => {
   // Get book, all books for form (in parallel)
   const [bookInstance, allBooks] = await Promise.all([
     BookInstance.findById(req.params.id).populate("book").exec(),
-    Book.find(),
+    Book.find({}, "title").exec(),
   ]);
 
   if (bookInstance === null) {
     // No results.
-    const err = new Error("Book copy not found");
+    const err = new Error("Cópia do livro não encontrada");
     err.status = 404;
     return next(err);
   }
 
   res.render("bookinstance_form", {
-    title: "Update BookInstance",
+    title: "Atualizar Cópia de Livro",
     book_list: allBooks,
-    selected_book: bookInstance.book._id,
+    selected_book: bookInstance.book,
     bookinstance: bookInstance,
   });
 });
@@ -141,14 +141,14 @@ exports.bookinstance_update_get = asyncHandler(async (req, res, next) => {
 // Handle BookInstance update on POST.
 exports.bookinstance_update_post = [
   // Validate and sanitize fields.
-  body("book", "Book must be specified").trim().isLength({ min: 1 }).escape(),
-  body("imprint", "Imprint must be specified")
+  body("book", "O livro deve ser especificado").trim().isLength({ min: 1 }).escape(),
+  body("imprint", "A editora deve ser especificada")
     .trim()
     .isLength({ min: 1 })
     .escape(),
   body("status").escape(),
-  body("due_back", "Invalid date")
-    .optional({ values: "falsy" })
+  body("due_back", "Data inválida")
+    .optional({ checkFalsy: true })
     .isISO8601()
     .toDate(),
 
@@ -173,9 +173,9 @@ exports.bookinstance_update_post = [
       const allBooks = await Book.find({}, "title").exec();
 
       res.render("bookinstance_form", {
-        title: "Update BookInstance",
+        title: "Atualizar Cópia de Livro",
         book_list: allBooks,
-        selected_book: bookInstance.book._id,
+        selected_book: bookInstance.book,
         errors: errors.array(),
         bookinstance: bookInstance,
       });

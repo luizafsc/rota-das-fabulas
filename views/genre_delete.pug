@@ -2,15 +2,15 @@ extends layout
 
 block content
 
-  h1 Delete Genre: #{genre.name}
+  h1 Excluir gênero: #{genre.name}
 
   if genre_books.length
 
-    p #[strong Delete the following books before attempting to delete this genre.]
+    p #[strong Exclua os livros a seguir antes de tentar excluir esse gênero.]
 
     div(style='margin-left:20px;margin-top:20px')
 
-      h4 Books
+      h4 Livros
 
       dl
       each book in genre_books
@@ -19,10 +19,10 @@ block content
         dd #{book.summary}
 
   else
-    p Do you really want to delete this Genre?
+    p Você realmente quer deletar esse gênero?
 
     form(method='POST' action='')
       div.form-group
         input#id.form-control(type='hidden',name='id', required='true', value=genre._id )
 
-      button.btn.btn-primary(type='submit') Delete
+      button.btn.btn-primary(type='submit') Excluir

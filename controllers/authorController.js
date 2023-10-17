@@ -29,7 +29,7 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
   }
 
   res.render("author_detail", {
-    title: "Author Detail",
+    title: "Detalhe do autor",
     author: author,
     author_books: allBooksByAuthor,
   });
@@ -204,7 +204,8 @@ exports.author_update_post = [
       return;
     } else {
       // Data from form is valid. Update the record.
-      await Author.findByIdAndUpdate(req.params.id, author);
+      await Author.findByIdAndUpdate(req.params.id, author, { new: true });
+
       res.redirect(author.url);
     }
   }),

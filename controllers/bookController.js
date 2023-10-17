@@ -34,7 +34,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 // Display list of all books.
 exports.book_list = asyncHandler(async (req, res, next) => {
-  const allBooks = await Book.find({}, "title author")
+  const allBooks = await Book.find({}, "Titulo autor")
     .sort({ title: 1 })
     .populate("author")
     .exec();
@@ -73,7 +73,7 @@ exports.book_create_get = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render("book_form", {
-    title: "Create Book",
+    title: "Criar livro",
     authors: allAuthors,
     genres: allGenres,
   });
@@ -91,19 +91,19 @@ exports.book_create_post = [
   },
 
   // Validate and sanitize fields.
-  body("title", "Title must not be empty.")
+  body("title", "O Titulo não deve estar vazio.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("author", "Author must not be empty.")
+  body("author", "O Autor não deve estar vazio.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("summary", "Summary must not be empty.")
+  body("summary", "O sumário não deve estar vazio.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("isbn", "ISBN must not be empty").trim().isLength({ min: 1 }).escape(),
+  body("isbn", "ISBN não deve estar vazio.").trim().isLength({ min: 1 }).escape(),
   body("genre.*").escape(),
   // Process request after validation and sanitization.
 
@@ -136,7 +136,7 @@ exports.book_create_post = [
         }
       }
       res.render("book_form", {
-        title: "Create Book",
+        title: "Criar Livro",
         authors: allAuthors,
         genres: allGenres,
         book: book,
@@ -163,7 +163,7 @@ exports.book_delete_get = asyncHandler(async (req, res, next) => {
   }
 
   res.render("book_delete", {
-    title: "Delete Book",
+    title: "Excluir livro",
     book: book,
     book_instances: bookInstances,
   });
@@ -186,7 +186,7 @@ exports.book_delete_post = asyncHandler(async (req, res, next) => {
   if (bookInstances.length > 0) {
     // Book has book_instances. Render in same way as for GET route.
     res.render("book_delete", {
-      title: "Delete Book",
+      title: "Excluir livro",
       book: book,
       book_instances: bookInstances,
     });
@@ -209,7 +209,7 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
 
   if (book === null) {
     // No results.
-    const err = new Error("Book not found");
+    const err = new Error("Livro não encontrado");
     err.status = 404;
     return next(err);
   }
@@ -224,7 +224,7 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
   }
 
   res.render("book_form", {
-    title: "Update Book",
+    title: "Atualizar livro",
     authors: allAuthors,
     genres: allGenres,
     book: book,
@@ -246,19 +246,19 @@ exports.book_update_post = [
   },
 
   // Validate and sanitize fields.
-  body("title", "Title must not be empty.")
+  body("title", "O titulo não deve estar vazio.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("author", "Author must not be empty.")
+  body("author", "O autor não deve estar vazio.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("summary", "Summary must not be empty.")
+  body("summary", "O sumário não deve estar vazio.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("isbn", "ISBN must not be empty").trim().isLength({ min: 1 }).escape(),
+  body("isbn", "ISBN não deve estar vazio").trim().isLength({ min: 1 }).escape(),
   body("genre.*").escape(),
 
   // Process request after validation and sanitization.
@@ -292,7 +292,7 @@ exports.book_update_post = [
         }
       }
       res.render("book_form", {
-        title: "Update Book",
+        title: "Atualizar livro",
         authors: allAuthors,
         genres: allGenres,
         book: book,

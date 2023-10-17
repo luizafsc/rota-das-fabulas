@@ -1,5 +1,5 @@
 {
-  "name": "express-locallibrary-tutorial",
+  "name": "rota-das-fabulas",
   "version": "0.0.1",
   "engines": {
     "node": ">=v16.15.0"
@@ -27,5 +27,17 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "description": "trabalho para a matéria de desenvolvimento web III",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizafsc/rota-das-fabulas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizafsc/rota-das-fabulas/issues"
+  },
+  "homepage": "https://github.com/luizafsc/rota-das-fabulas#readme"
 }

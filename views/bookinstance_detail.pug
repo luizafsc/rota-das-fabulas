@@ -5,7 +5,7 @@ block content
 
   h1 ID: #{bookinstance._id}
 
-  p #[strong Title:]
+  p #[strong Titulo:]
     a(href=bookinstance.book.url) #{bookinstance.book.title}
   p #[strong Imprint:] #{bookinstance.imprint}
 
@@ -18,10 +18,10 @@ block content
       span.text-warning #{bookinstance.status}
 
   if bookinstance.status!='Available'
-    p #[strong Due back:] #{bookinstance.due_back_formatted}
+    p #[strong Data de devolução:] #{bookinstance.due_back_formatted}
 
   hr
+  p 
+    a(href=bookinstance.url+'/delete') Excluir exemplar de livro
   p
-    a(href=bookinstance.url+'/delete') Delete BookInstance
-  p
-    a(href=bookinstance.url+'/update') Update BookInstance
+    a(href=bookinstance.url+'/update') Atualizar exemplar de livro
