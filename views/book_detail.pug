@@ -25,8 +25,20 @@ block content
         font-weight: bold;
         padding-bottom:5px;
       }
+      h4 {
+        font-family: 'Gochi Hand', cursive;
+        color: #075d37;
+      }
       p {
-        text-align: center;
+        font-family: 'Poppins', serif;
+        color: #000000;
+      }
+      p.paragraph {
+        margin-left: 1rem;
+      }
+      p.paragraph2 {
+        margin-left: 1rem;
+        font-weight: bold;
       }
     body {
       background-color: #f2f2f2; /* Cor de fundo */
@@ -41,14 +53,18 @@ block content
       align-self: center;
       margin: 0 auto;
     }
+    .bold {
+      font-weight: bold;
+    }
+
 
   h1 Titulo: #{book.title}
 
-  p #[strong Autor:]
+  p #[strong Author:]
     a(href=book.author.url) #{book.author.name}
-  p #[strong Sinopse:] #{book.summary}
+  p #[strong Summary:] #{book.summary}
   p #[strong ISBN:] #{book.isbn}
-  p #[strong Gênero:]
+  p #[strong Genre:]
     each val, index in book.genre
       a(href=val.url) #{val.name}
       if index < book.genre.length - 1
@@ -60,11 +76,11 @@ block content
     each val in book_instances
       hr
       if val.status=='Available'
-        p.text-success #{val.status}
+        p.text-success.bold #{val.status}
       else if val.status=='Maintenance'
-        p.text-danger #{val.status}
+        p.text-danger.bold #{val.status}
       else
-        p.text-warning #{val.status}
+        p.text-warning.bold #{val.status}
       p #[strong Imprint:] #{val.imprint}
       if val.status!='Available'
         p #[strong Data de devolução:] #{val.due_back}
